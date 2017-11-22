@@ -1,0 +1,101 @@
+//////////////////////////////STACK/////////////////////////////////////////////////////////////////////////
+ String ruta = "C:\\Users\\Felipe\\Desktop\\printfile.dot";
+        
+        while(!Stack01.IsEmpty()) {
+        temp = (String) Stack01.Top(); 
+        Stack01.Pop();
+        temp2 = (String) Stack01.Top();
+	 if (temp != null && temp2!= null)
+      	   {
+            data += "\r\n" + temp + dotDirectioner + temp2;        
+           }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+
+//////////////////////////////queue/////////////////////////////////////////////////////////////////////////
+while(!Queue01.isEmpty()) {
+        temp = (String) Queue01.first(); 
+        Queue01.dequeue();
+        temp2 = (String)  Queue01.first(); 
+         if (temp != null && temp2!= null)
+      	   {
+            data += "\r\n" + temp + dotDirectioner + temp2;        
+           }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+//////////////////////////////LinkedList/////////////////////////////////////////////////////////////////////////
+    while(!linkedList01.isEmpty()) {
+        temp = (String) linkedList01.first(); 
+        linkedList01.removeFirst();
+        temp2 = (String)  linkedList01.first();         
+         if (temp != null && temp2!= null)
+      	   {
+            data += "\r\n" + temp + dotDirectioner + temp2;        
+           }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        
+    }
+//////////////////////////////DoubleLinkedList/////////////////////////////////////////////////////////////////////////
+    while(!doubleLinkedList01.isEmpty()) {
+        temp = (String) doubleLinkedList01.first(); 
+        doubleLinkedList01.removeFirst();
+        temp2 = (String)  doubleLinkedList01.first(); 
+        
+        if(temp != null && temp2 != null)
+          {
+            data += "\r\n" + temp + dotDirectioner + temp2;
+            data += "\r\n" + temp2 + dotDirectioner + temp; 
+          }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+//////////////////////////////CircularLinkedList/////////////////////////////////////////////////////////////////////////
+header = (String) circularLinkedList01.first(); 
+        trailer = (String) circularLinkedList01.last(); 
+      while(!circularLinkedList01.isEmpty()) {
+            
+        temp = (String) circularLinkedList01.first(); 
+        circularLinkedList01.removeFirst();
+        temp2 = (String)  circularLinkedList01.first(); 
+        
+        if (temp != null && temp2!= null)
+        {
+            data += "\r\n" + temp + dotDirectioner + temp2;
+            data += "\r\n" + temp2 + dotDirectioner + temp;
+        }
+        
+        }        
+        data+= "\r\n" + trailer + dotDirectioner+ header; 
+        data+= "\r\n" + header + dotDirectioner+ trailer;
+        
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
