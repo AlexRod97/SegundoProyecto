@@ -21,14 +21,23 @@ import java.io.IOException;
  * @author Felipe
  */
 public class GraphViz {
+    String[] rutas; 
+    String ruta = "example/grafo";
+    String type = ".png"; 
+    int cont = 0; 
+    //rutas[0] = "example/ex4-1.png"; 
+   
     
     	public void createDemoFromDot(String file) throws IOException {
 		FileInputStream fis = null;
-		
 		fis = new FileInputStream(file);
 		
+                ruta = ruta + cont + type; 
+                
 		MutableGraph g = Parser.read(fis);
-		Graphviz.fromGraph(g).width(700).render(Format.PNG).toFile(new File("example/ex4-1.png"));
+		Graphviz.fromGraph(g).width(700).render(Format.PNG).toFile(new File(ruta));
+                cont++; 
+                ruta = "example/grafo";
 	}
         
         public void createDemoGraph() throws IOException {

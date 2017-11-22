@@ -6,17 +6,16 @@
 import Classes.ArrayList;
 import Classes.Generic_Stack;
 import Classes.Generic_Queue;
+import Classes.Generic_CircularLinkedList;
+import Classes.Generic_DoubleLinkedList;
+import Classes.Generic_LinkedList;
 
 import java.io.*;
 import java.util.LinkedList;
 
-import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
-import Classes.FileLoader;
-import Classes.Generic_CircularLinkedList;
-import Classes.Generic_DoubleLinkedList;
-import Classes.Generic_LinkedList;
+import Classes.Writer;
 import javax.swing.JFileChooser;
 import Classes.GraphViz;
 import java.util.logging.Level;
@@ -44,6 +43,15 @@ public class MainFrame extends javax.swing.JFrame {
       String data = ""; 
       GraphViz graph = new GraphViz();
       
+      
+        Writer fl = new Writer(); 
+        int cont = 0;         
+        String temp = "";
+        String temp2 = ""; 
+        String ruta = "D:\\Alex Rodríguez\\Desktop\\printfile.dot";
+        String header = ""; 
+        String trailer = ""; 
+        
     /**
      * Creates new form MainFrame
      */
@@ -159,40 +167,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FileLoader fl = new FileLoader(); 
-        int cont = 0;         
-        String temp = "";
-        String temp2 = ""; 
-        String ruta = "D:\\Alex Rodríguez\\Desktop\\printfile.dot";
-        String header = ""; 
-        String trailer = ""; 
-        
-        header = (String) circularLinkedList01.first(); 
-        trailer = (String) circularLinkedList01.last(); 
-      while(!circularLinkedList01.isEmpty()) {
-            
-        temp = (String) circularLinkedList01.first(); 
-        circularLinkedList01.removeFirst();
-        temp2 = (String)  circularLinkedList01.first(); 
-        
-        if (temp != null && temp2!= null)
-        {
-            data += "\r\n" + temp + dotDirectioner + temp2;
-            data += "\r\n" + temp2 + dotDirectioner + temp;
-        }
-        
-        }        
-        data+= "\r\n" + trailer + dotDirectioner+ header; 
-        data+= "\r\n" + header + dotDirectioner+ trailer;
-        
-        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
-          try {
-              graph.createDemoFromDot(ruta);
-              
-          } catch (IOException ex) {
-              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-          }
-        
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -234,6 +209,7 @@ public class MainFrame extends javax.swing.JFrame {
                  {                     
                      Stack01.Push(Scan.next());  
                  }
+               printStack();
                Scan.nextLine();
             }
             
@@ -244,6 +220,7 @@ public class MainFrame extends javax.swing.JFrame {
                  {                     
                     Queue01.enqueue(Scan.next());  
                  } 
+                 printQueue(); 
                  Scan.nextLine();
             }
             
@@ -264,6 +241,7 @@ public class MainFrame extends javax.swing.JFrame {
                         linkedList01.addLast(Scan.next());  
                     }
                  } 
+                 printLinkedList(); 
                  Scan.nextLine();
             }
             
@@ -283,6 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
                         doubleLinkedList01.addLast(Scan.next());  
                     }
                  }  
+                  printDoubleLinkedList(); 
                   Scan.nextLine();
             }
             if (Scan.findInLine("circularlinkedlist") != null) {
@@ -301,6 +280,7 @@ public class MainFrame extends javax.swing.JFrame {
                         circularLinkedList01.addLast(Scan.next());  
                     }
                  } 
+                  printCircularLinkedList(); 
                 //  Scan.nextLine();
             }
             
@@ -310,8 +290,118 @@ public class MainFrame extends javax.swing.JFrame {
     } // end of ReadFile()
     
     
-    public void PrintStructures(){
+    public void printStack(){
+               
+        while(!Stack01.IsEmpty()) {
+        temp = (String) Stack01.Top(); 
+        Stack01.Pop();
+        temp2 = (String) Stack01.Top();
+	 if (temp != null && temp2!= null)
+      	   {
+            data += "\r\n" + temp + dotDirectioner + temp2;        
+           }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          data = ""; 
+    }
+    
+    public void printQueue() {
+        while(!Queue01.isEmpty()) {
+        temp = (String) Queue01.first(); 
+        Queue01.dequeue();
+        temp2 = (String)  Queue01.first(); 
+         if (temp != null && temp2!= null)
+      	   {
+            data += "\r\n" + temp + dotDirectioner + temp2;        
+           }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          data = ""; 
+    }
+    
+    public void printLinkedList() {
+            
+        while(!linkedList01.isEmpty()) {
+        temp = (String) linkedList01.first(); 
+        linkedList01.removeFirst();
+        temp2 = (String)  linkedList01.first();         
+         if (temp != null && temp2!= null)
+      	   {
+            data += "\r\n" + temp + dotDirectioner + temp2;        
+           }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          data = ""; 
+    }
+    
+    public void printDoubleLinkedList() {
+            while(!doubleLinkedList01.isEmpty()) {
+        temp = (String) doubleLinkedList01.first(); 
+        doubleLinkedList01.removeFirst();
+        temp2 = (String)  doubleLinkedList01.first(); 
         
+        if(temp != null && temp2 != null)
+          {
+            data += "\r\n" + temp + dotDirectioner + temp2;
+            data += "\r\n" + temp2 + dotDirectioner + temp; 
+          }
+        }          
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          data = ""; 
+    }
+    
+    public void printCircularLinkedList() {
+      header = (String) circularLinkedList01.first(); 
+      trailer = (String) circularLinkedList01.last(); 
+      
+      while(!circularLinkedList01.isEmpty()) {
+            
+        temp = (String) circularLinkedList01.first(); 
+        circularLinkedList01.removeFirst();
+        temp2 = (String)  circularLinkedList01.first(); 
+        
+        if (temp != null && temp2!= null)
+          {
+            data += "\r\n" + temp + dotDirectioner + temp2;
+            data += "\r\n" + temp2 + dotDirectioner + temp;
+          }
+        
+        }        
+        data+= "\r\n" + trailer + dotDirectioner+ header; 
+        data+= "\r\n" + header + dotDirectioner+ trailer;
+        
+        fl.writeUsingFileWriter(fileHeader + "\r\n" + data +"\r\n" + fileFooter);      
+          try {
+              graph.createDemoFromDot(ruta);
+              
+          } catch (IOException ex) {
+              Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          data = ""; 
     }
     
      public void CloseFile(){
