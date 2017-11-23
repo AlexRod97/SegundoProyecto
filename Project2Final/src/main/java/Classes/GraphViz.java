@@ -35,15 +35,11 @@ public class GraphViz {
                 ruta = ruta + cont + type; 
                 
 		MutableGraph g = Parser.read(fis);
-		Graphviz.fromGraph(g).width(700).render(Format.PNG).toFile(new File(ruta));
+		Graphviz.fromGraph(g).height(500).width(100).render(Format.PNG).toFile(new File(ruta));
                 cont++; 
                 ruta = "example/grafo";
-	}
-        
-        public void createDemoGraph() throws IOException {
-		Graph g = graph("example1").directed().with(node("a").link(node("b")));
-		Graphviz.fromGraph(g).width(200).render(Format.PNG).toFile(new File("example/ex1.png"));
-	}
+	}      
+      
 	
 
     
